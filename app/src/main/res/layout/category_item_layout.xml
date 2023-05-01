@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView android:id="@+id/cardView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="4dp" app:cardBackgroundColor="@color/colorPrimary" app:cardCornerRadius="16dp" app:cardElevation="2dp" app:contentPadding="8dp">
+        <TextView android:textSize="14sp" android:textStyle="bold" android:textColor="@color/white" android:id="@+id/tvTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:text="Category name"/>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

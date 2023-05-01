@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <item android:id="@+id/actionAboutUs" android:title="Ilova haqida"/>
+    <item android:id="@+id/actionShareApp" android:title="Ilovani ulashish"/>
+    <item android:id="@+id/actionLogout" android:title="Tizimdan chiqish"/>
+</menu>
