@@ -91,7 +91,6 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layout_width="wrap_content"
