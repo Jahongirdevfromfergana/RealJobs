@@ -50,30 +50,9 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-//
-//        viewModel.img.observe(this, Observer {
-//            Toast.makeText(this, "${it.success}", Toast.LENGTH_SHORT).show()
-//            if (it.success) {
-//                setResult(Activity.RESULT_OK)
-//                finish()
-//            }
-//        })
-//        binding.chooseImg.setOnClickListener {
-////            openImageChooser()
-//
-//            openImagePicker()
-//        }
         binding.chooseImg.setOnClickListener {
             contract.launch("image/*")
         }
-//        binding.chooseImg.setOnClickListener {
-//            if (imgUri != null) {
-//                val inputStream = contentResolver.openInputStream(imgUri!!)
-//                inputStream?.let { inputstream ->
-//                    viewModel.uploadFile(inputstream)
-//                }
-//            }
-//        }
         viewModel.progress.observe(this, Observer {
             binding.flProgress.visibility = if (it) View.VISIBLE else View.GONE
         })
@@ -92,7 +71,7 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
             finish()
         })
         viewModel.registrationData.observe(this, Observer {
-//            Prefs.setUser(it)
+            Prefs.setUser(it)
             Toast.makeText(this, "Muvoffaqiyatli ro'yhatdan o'tdingiz!", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -163,7 +142,6 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
 
         viewModel.getFilters()
         viewModel.getWorkers()
-//        viewModel.notifyAll()
     }
 
     private fun openImageChooser() {
@@ -279,10 +257,7 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    fun openImagePicker() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()

@@ -19,7 +19,6 @@ import java.io.File
 
 
 class UserRepository : BaseRepository() {
-    val userModel: UserModel? = null
     fun login(
         phone: String?,
         password: String?,
@@ -96,11 +95,11 @@ class UserRepository : BaseRepository() {
             .doOnSubscribe { progress.value = true }
             .subscribeWith(object : DisposableObserver<BaseResponse<UserModel>>(){
                 override fun onNext(t: BaseResponse<UserModel>) {
-//                    if (!t.error) {
+                    if (!t.error) {
                         success.value = t.data
-//                    } else {
+                    } else {
                         error.value = t.message
-//                    }
+                    }
                 }
 
                 override fun onError(e: Throwable) {
@@ -141,7 +140,6 @@ class UserRepository : BaseRepository() {
             }))
         )
     }
-
     fun getRegions(
         progress: MutableLiveData<Boolean>,
         error: MutableLiveData<String>,
