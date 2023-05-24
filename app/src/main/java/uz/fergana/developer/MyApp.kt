@@ -24,7 +24,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 1,
                 "worker",
-                "Aliyev Vali",
+                "Soliyev Shoxrux",
                 "998",
                 40.3714,
                 71.787028,
@@ -40,7 +40,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 2,
                 "worker",
-                "Asrorov Husan",
+                "Nazirqulov Jamoliddin",
                 "998",
                 40.39117,
                 71.766085,
@@ -70,7 +70,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 4,
                 "worker",
-                "Jasurov Nodir",
+                "Ergashev Ravshanbek",
                 "998",
                 40.376675,
                 71.780833,
@@ -85,7 +85,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 5,
                 "worker",
-                "Nodirov Vali",
+                "Mirzarahoimov Mirzarahim",
                 "998",
                 40.382877,
                 71.753733,
@@ -100,7 +100,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 6,
                 "worker",
-                "Ahmadjonov Husniddin",
+                "Abdurahmonov Muhammadjon",
                 "998",
                 40.376106,
                 71.794731,
@@ -115,7 +115,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 7,
                 "worker",
-                "Anvarov Zokir",
+                "Mamataliyev Jumanazarhoji",
                 "998",
                 40.371406,
                 71.78702891,
@@ -130,7 +130,7 @@ class MyApp : MultiDexApplication() {
             WorkerModel(
                 8,
                 "worker",
-                "Zokirov Shokir",
+                "Sirojiddinov Azamatjon",
                 "998",
                 40.371407,
                 71.787028331,
