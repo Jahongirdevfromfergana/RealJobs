@@ -4,14 +4,22 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import uz.fergana.developer.model.CategoryModel
 import uz.fergana.developer.model.RegionModel
 import uz.fergana.developer.model.UserModel
 import uz.fergana.developer.model.WorkerModel
 import uz.fergana.developer.model.response.BaseResponse
+import java.io.File
 
 
 class UserRepository : BaseRepository() {
+    val userModel: UserModel? = null
     fun login(
         phone: String?,
         password: String?,
@@ -55,36 +63,44 @@ class UserRepository : BaseRepository() {
         locationLon: Double,
         experience: Int,
         category_id: Int,
-        image: String?,
+        file: File,
         comment: String?,
         progress: MutableLiveData<Boolean>,
         error: MutableLiveData<String>,
         success: MutableLiveData<UserModel>
     ) {
+        val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val part = MultipartBody.Part.createFormData("image",file.name,requestBody)
+
+        val requestBodyAll: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("login",phone!! )
+            .addFormDataPart("password",password!! )
+            .addFormDataPart("user_type",userType!! )
+            .addFormDataPart("region_id",regionId.toString() )
+            .addFormDataPart("fullname",fullname!! )
+            .addFormDataPart("location_lat",locationLat.toString() )
+            .addFormDataPart("location_lon",locationLon.toString() )
+            .addFormDataPart("experience",experience.toString() )
+            .addFormDataPart("category_id",category_id.toString() )
+            .addFormDataPart("comment",comment!! )
+            .addPart(part)
+            .build()
+
         compositeDisposable.add((api.registration(
-            phone,
-            password,
-            userType,
-            regionId,
-            fullname,
-            locationLat,
-            locationLon,
-            experience,
-            category_id,
-            image,
-            comment
+            requestBodyAll
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally { progress.value = false }
             .doOnSubscribe { progress.value = true }
-            .subscribeWith(object : DisposableObserver<BaseResponse<UserModel>>() {
+            .subscribeWith(object : DisposableObserver<BaseResponse<UserModel>>(){
                 override fun onNext(t: BaseResponse<UserModel>) {
-                    if (!t.error) {
+//                    if (!t.error) {
                         success.value = t.data
-                    } else {
+//                    } else {
                         error.value = t.message
-                    }
+//                    }
                 }
 
                 override fun onError(e: Throwable) {

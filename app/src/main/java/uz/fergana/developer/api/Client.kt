@@ -112,7 +112,7 @@ object Client {
 //            if (!Prefs.getToken().isNullOrEmpty()) {
 //                builder.addHeader("token", Prefs.getToken())
 //            }
-            builder.method(original.method(), original.body())
+//            builder.method(original.method(), original.body())
             return builder.build()
         }
     }
