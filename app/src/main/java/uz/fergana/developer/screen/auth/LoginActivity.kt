@@ -91,8 +91,13 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.btnNext.setOnClickListener {
             when (state) {
                 LoginState.LOGIN -> {
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    if (binding.edPhone.text.isNullOrEmpty() || binding.edPassword.text.isNullOrEmpty()){
+                        Toast.makeText(this, "Maydonlarni to'ldirinng!", Toast.LENGTH_LONG).show()
+                    }else{
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+
                     return@setOnClickListener
                     if (binding.edPhone.text.length < 10 || binding.edPassword.text.length < 2) {
                         Toast.makeText(
@@ -169,6 +174,8 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun initData() {
+        binding.img.visibility = View.GONE
+        binding.chooseImg.visibility = View.GONE
         binding.tilFullname.visibility = View.GONE
         binding.tilRegion.visibility = View.GONE
         binding.rgUserType.visibility = View.GONE
@@ -189,11 +196,12 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
             LoginState.REGISTRATION -> {
+                binding.img.visibility = View.VISIBLE
+                binding.chooseImg.visibility = View.VISIBLE
                 binding.tilPassword.visibility = View.VISIBLE
                 binding.tilFullname.visibility = View.VISIBLE
                 binding.tilRegion.visibility = View.VISIBLE
                 binding.rgUserType.visibility = View.VISIBLE
-
                 binding.tvSignOrRegistration.text = "Tizimga kirish"
                 binding.btnNext.text = "Ro'yhatdan o'tish"
                 binding.tvSignOrRegistration.setOnClickListener {
