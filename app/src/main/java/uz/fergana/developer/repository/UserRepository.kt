@@ -141,7 +141,6 @@ class UserRepository : BaseRepository() {
             }))
         )
     }
-
     fun getRegions(
         progress: MutableLiveData<Boolean>,
         error: MutableLiveData<String>,
@@ -189,7 +188,6 @@ class UserRepository : BaseRepository() {
                 }
 
                 override fun onComplete() {
-
                 }
 
             }))
