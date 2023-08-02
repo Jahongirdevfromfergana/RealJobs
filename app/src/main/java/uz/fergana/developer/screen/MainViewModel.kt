@@ -7,9 +7,12 @@ import uz.fergana.developer.model.RegionModel
 import uz.fergana.developer.model.UserModel
 import uz.fergana.developer.model.WorkerModel
 import uz.fergana.developer.repository.UserRepository
+import java.io.File
+import java.io.InputStream
 
 
 class MainViewModel : ViewModel() {
+    val img = MutableLiveData<WorkerModel>()
     val categoriesData = MutableLiveData<List<CategoryModel>>()
     val error = MutableLiveData<String>()
     val loginData = MutableLiveData<UserModel>()
@@ -34,10 +37,16 @@ class MainViewModel : ViewModel() {
         locationLon: Double,
         experience: Int,
         category_id: Int,
-        image: String?,
+        inputStream: InputStream,
         comment: String?
     ) {
+        val file = File.createTempFile("avatar", ".tmp")
+        file.outputStream().use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
+
         repository.registration(
+
             phone,
             password,
             userType,
@@ -47,7 +56,7 @@ class MainViewModel : ViewModel() {
             locationLon,
             experience,
             category_id,
-            image,
+            file,
             comment,
             progress,
             error,
@@ -62,5 +71,12 @@ class MainViewModel : ViewModel() {
 
     fun getWorkers() {
         repository.getWorkers(progress, error, workersData)
+    }
+
+    fun uploadFile(inputStream: InputStream) {
+        val file = File.createTempFile("image", ".jpg")
+        file.outputStream().use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
     }
 }

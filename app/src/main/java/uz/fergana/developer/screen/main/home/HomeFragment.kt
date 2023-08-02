@@ -38,7 +38,6 @@ class HomeFragment: Fragment(), CategoriesAdapterCallback {
         binding.recycler.layoutManager = LinearLayoutManager(requireActivity())
         binding.recycler.adapter = EmployeesAdapter(MyApp.employees)
     }
-
     override fun onClickItem(item: CategoryModel) {
         binding.recycler.adapter = EmployeesAdapter(if(item.id == 0) MyApp.employees else MyApp.employees.filter { it.category_id == item.id })
     }

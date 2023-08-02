@@ -33,6 +33,7 @@ class MyApp : MultiDexApplication() {
                 3,
                 "https://i.pravatar.cc/300?img=56",
                 "Haydovchi",
+
                 1,
                 "B va C toifa haydovchi"
             ),
