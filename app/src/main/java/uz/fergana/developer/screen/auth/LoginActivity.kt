@@ -114,7 +114,6 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
                 LoginState.LOGIN -> {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
-                    return@setOnClickListener
                     if (binding.edPhone.text.length < 10 || binding.edPassword.text.length < 2) {
                         Toast.makeText(
                             this,
@@ -127,6 +126,8 @@ class LoginActivity : AppCompatActivity(), OnMapReadyCallback {
                         binding.edPhone.text.toString(),
                         binding.edPassword.text.toString()
                     )
+                    return@setOnClickListener
+
                 }
                 LoginState.REGISTRATION -> {
                     if (binding.edPhone.text.length < 4 || binding.edPassword.text.length < 2 || binding.edFullname.text.length < 2 || (!binding.rbWorker.isChecked && !binding.rbUser.isChecked)) {
